@@ -14,6 +14,7 @@ ethdir="$workspace/src/github.com/hostup"
 if [ ! -L "$ethdir/pool" ]; then
     mkdir -p "$ethdir"
     cd "$ethdir"
+    ln -s ../../../../../. ethash-mining-pools
     cd "$root"
 fi
 
@@ -24,8 +25,8 @@ GOBIN="$PWD/build/bin"
 export GOPATH GOBIN
 
 # Run the command inside the workspace.
-cd "$ethdir/pool"
-PWD="$ethdir/pool"
+cd "$ethdir/ethash-mining-pools"
+PWD="$ethdir/ethash-mining-pools"
 
 # Launch the arguments with the configured environment.
 exec "$@"
