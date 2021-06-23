@@ -10,9 +10,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
-	"github.com/techievee/ethash-mining-pool/rpc"
-	"github.com/techievee/ethash-mining-pool/storage"
-	"github.com/techievee/ethash-mining-pool/util"
+	"github.com/hostup/pool/rpc"
+	"github.com/hostup/pool/storage"
+	"github.com/hostup/pool/util"
 )
 
 const txCheckInterval = 5 * time.Second
@@ -146,7 +146,8 @@ func (u *PayoutsProcessor) process() {
 		}
 
 		// Check if we have enough funds
-		poolBalance, err := u.rpc.GetBalance(u.config.Address)
+		    poolAddress := os.Getenv(u.config.Address)
+		poolBalance, err := u.rpc.GetBalance(poolAddress)
 		if err != nil {
 			u.halt = true
 			u.lastFail = err

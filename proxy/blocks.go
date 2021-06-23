@@ -4,13 +4,12 @@ import (
 	"log"
 	"math/big"
 	"strconv"
-	"strings"
+"strings"
 	"sync"
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/techievee/ethash-mining-pool/rpc"
-	"github.com/techievee/ethash-mining-pool/util"
+	"github.com/hostup/pool/rpc"
 )
 
 const maxBacklog = 3
@@ -49,6 +48,7 @@ func (b Block) NumberU64() uint64        { return b.number }
 func (s *ProxyServer) fetchBlockTemplate() {
 	rpc := s.rpc()
 	t := s.currentBlockTemplate()
+	reply, err := r.GetWork(s.config.Proxy.Address)
 	pendingReply, height, diff, err := s.fetchPendingBlock()
 	if err != nil {
 		log.Printf("Error while refreshing pending block on %s: %s", rpc.Name, err)
