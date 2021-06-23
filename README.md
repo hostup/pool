@@ -1,9 +1,9 @@
 # Ethash-mining-pool
 Highly Efficient mining pool designed for Ethash based coins
-[![Build Status](https://travis-ci.org/techievee/ethash-mining-pool.svg?branch=V2.0_Eth)](https://travis-ci.org/techievee/ethash-mining-pool) 
+[![Build Status](https://travis-ci.org/hostup/pool.svg?branch=V2.0_Eth)](https://travis-ci.org/hostup/pool) 
 
 
-![alt text](https://raw.githubusercontent.com/techievee/ethash-mining-pool/master/images/FrontEnd.png)
+![alt text](https://raw.githubusercontent.com/hostup/pool/master/images/FrontEnd.png)
 
 ### Features
 
@@ -46,7 +46,7 @@ Highly Efficient mining pool designed for Ethash based coins
 
 ### Architecture
 
-![Architecture](https://raw.githubusercontent.com/techievee/ethash-mining-pool/master/images/Architecture.PNG)
+![Architecture](https://raw.githubusercontent.com/hostup/pool/master/images/Architecture.PNG)
 
 
 ### Building on Linux
@@ -66,7 +66,7 @@ First install  [go-ethereum](https://github.com/ethereum/go-ethereum/wiki/Instal
 Clone & compile:
 
     git config --global http.https://gopkg.in.followRedirects true
-    git clone https://github.com/techievee/ethash-mining-pool.git
+    git clone https://github.com/hostup/pool.git
     <Change the branch>
     git pull
     cd open-ethereum-pool
@@ -371,7 +371,7 @@ Configuration is actually simple, just read it twice and think twice before chan
 
 ### Sample VM Configurations
 
-![Configuration](https://raw.githubusercontent.com/techievee/ethash-mining-pool/master/images/Configurations.PNG)
+![Configuration](https://raw.githubusercontent.com/hostup/pool/master/images/Configurations.PNG)
 
 
 

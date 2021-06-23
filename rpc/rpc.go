@@ -14,7 +14,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
-	"github.com/techievee/ethash-mining-pool/util"
+	"github.com/hostup/pool/util"
 )
 
 type RPCClient struct {
