@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 set -e
@@ -11,11 +10,11 @@ fi
 # Create fake Go workspace if it doesn't exist yet.
 workspace="$PWD/build/_workspace"
 root="$PWD"
-zanodir="$workspace/src/github.com/zano-mining"
-if [ ! -L "$zanodir/open-zano-pool" ]; then
-    mkdir -p "$zanodir"
-    cd "$zanodir"
-    ln -s ../../../../../. open-zano-pool
+ethdir="$workspace/src/github.com/techievee"
+if [ ! -L "$ethdir/ethash-mining-pool" ]; then
+    mkdir -p "$ethdir"
+    cd "$ethdir"
+    ln -s ../../../../../. ethash-mining-pool
     cd "$root"
 fi
 
@@ -26,8 +25,8 @@ GOBIN="$PWD/build/bin"
 export GOPATH GOBIN
 
 # Run the command inside the workspace.
-cd "$zanodir/open-zano-pool"
-PWD="$zanodir/open-zano-pool"
+cd "$ethdir/ethash-mining-pool"
+PWD="$ethdir/ethash-mining-pool"
 
 # Launch the arguments with the configured environment.
 exec "$@"

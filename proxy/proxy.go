@@ -10,7 +10,6 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
-	"os"
 
 	"github.com/gorilla/mux"
 
@@ -58,13 +57,6 @@ type Session struct {
 }
 
 func NewProxy(cfg *Config, backend *storage.RedisClient) *ProxyServer {
-  address := os.Getenv(cfg.Proxy.Address)
-  if len(address) != 0 && !util.IsValidZanoAddress(address) {
-    log.Fatalln("Invalid Miner Address", address)
-  }
-  cfg.Proxy.Address = address
-
-
 	if len(cfg.Name) == 0 {
 		log.Fatal("You must set instance name")
 	}

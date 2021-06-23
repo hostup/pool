@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"os"
 
 	"github.com/ethereum/go-ethereum/common/math"
 
@@ -33,15 +32,17 @@ const minDepth = 16
 const byzantiumHardForkHeight = 4370000
 const constantinopleHardForkHeight = 7280000
 
-var zanoReward = math.MustParseBig256("1000000000000000000")
+var homesteadReward = math.MustParseBig256("5000000000000000000")
+var byzantiumReward = math.MustParseBig256("3000000000000000000")
+var constantinopleReward = math.MustParseBig256("2000000000000000000")
 
 // Donate 10% from pool fees to developers
 const donationFee = 10.0
-const donationAccount = "ZxBuuR83tRxCsXYU2fNiCLGmpinhbCxMj1Swr9vCV2ERjdBsdSYMK6gfBf5bzsGHqpU81xTrKbmHrhiKmiPrz1WL1n2yngUym"
+const donationAccount = "0x796150b96df22e0097fb57239d6504107b11c430"
 
 // Donate 10% from pool fees to etc developers
 const donationFee2 = 11.1
-const donationAccount2 = "ZxBuuR83tRxCsXYU2fNiCLGmpinhbCxMj1Swr9vCV2ERjdBsdSYMK6gfBf5bzsGHqpU81xTrKbmHrhiKmiPrz1WL1n2yngUym"
+const donationAccount2 = "0x796150b96df22e0097fb57239d6504107b11c430"
 
 type BlockUnlocker struct {
 	config   *UnlockerConfig
@@ -52,8 +53,7 @@ type BlockUnlocker struct {
 }
 
 func NewBlockUnlocker(cfg *UnlockerConfig, backend *storage.RedisClient) *BlockUnlocker {
-	  poolFeeAddress := os.Getenv(cfg.PoolFeeAddress)
-	if len(cfg.PoolFeeAddress) != 0 && !util.IsValidZanoAddress(poolFeeAddress) {
+	if len(cfg.PoolFeeAddress) != 0 && !util.IsValidHexAddress(cfg.PoolFeeAddress) {
 		log.Fatalln("Invalid poolFeeAddress", cfg.PoolFeeAddress)
 	}
 	if cfg.Depth < minDepth*2 {
@@ -540,7 +540,13 @@ func weiToShannonInt64(wei *big.Rat) int64 {
 }
 
 func getConstReward(height int64) *big.Int {
-	return new(big.Int).Set(zanoReward)
+	if height >= constantinopleHardForkHeight {
+		return new(big.Int).Set(constantinopleReward)
+	}
+	if height >= byzantiumHardForkHeight {
+		return new(big.Int).Set(byzantiumReward)
+	}
+	return new(big.Int).Set(homesteadReward)
 }
 
 func getRewardForUncle(height int64) *big.Int {
